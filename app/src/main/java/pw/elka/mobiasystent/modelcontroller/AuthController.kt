@@ -8,42 +8,42 @@ class AuthController {
     private var ownerActivity: Activity;
     private var auth: FirebaseAuth
     private var user: FirebaseUser?
+    private var flag = false;
 
     constructor(ownerActivity: Activity) {
         this.ownerActivity = ownerActivity;
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser;
+
     }
 
     /**
      * Logowanie do firebase(standardowe poświadczenia)
      */
-    fun signin(email: String, password: String): Boolean {
-        var status = false
+    fun signIn(email: String, password: String, callback: (result:Boolean)-> Unit): Unit {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(ownerActivity) { task ->
                 if (task.isSuccessful) {
-                    user = auth.currentUser
-                    status = true
+                    user = auth.currentUser;
+                    callback(true);
                 } else {
-                    status = false
+                    callback(false);
                 }
             }
-        return status;
     }
 
     /**
      * Rejestracja do firebase z wykorzystaniem maila i hasła
      */
-    fun signUp(email: String, password: String): Boolean {
+    fun signUp(email: String, password: String, callback: (result:Boolean)-> Unit): Boolean {
         var status = false
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(ownerActivity) { task ->
                 if (task.isSuccessful) {
                     user = auth.currentUser
-                    status = true
+                    callback(true);
                 } else {
-                    status = false
+                    callback(false);
                 }
             }
         return status;
