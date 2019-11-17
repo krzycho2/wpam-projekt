@@ -4,31 +4,31 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import pw.elka.mobiasystent.model.Event
+import pw.elka.mobiasystent.model.Occurence
 
-class EventsRepository {
+class OccurencesRepository {
     val TAG = "EVENT_REPOSITORY"
     var firestoreDB = FirebaseFirestore.getInstance()
     var user = FirebaseAuth.getInstance().currentUser;
-    val eventPath: String = "events"
+    val occurencePath: String = "occurences"
 
 
-    fun saveEvent(event: Event): Task<Void> {
+    fun saveOccurence(occurence: Occurence): Task<Void> {
         var documentReference = firestoreDB.collection("users").document(user!!.email.toString())
-            .collection(eventPath).document(event.eventId)
-        return documentReference.set(event)
+            .collection(occurencePath).document(occurence.occurenceId)
+        return documentReference.set(occurence)
     }
 
-    fun getSavedEvent(): CollectionReference {
+    fun getSavedOccurence(): CollectionReference {
         var collectionReference =
-            firestoreDB.collection("users/${user!!.email.toString()}/" + eventPath)
+            firestoreDB.collection("users/${user!!.email.toString()}/" + occurencePath)
         return collectionReference
     }
 
-    fun deleteAddress(event: Event): Task<Void> {
+    fun deleteOccurences(occurence: Occurence): Task<Void> {
         var documentReference =
-            firestoreDB.collection("users/${user!!.email.toString()}/" + eventPath)
-                .document(event.eventId)
+            firestoreDB.collection("users/${user!!.email.toString()}/" + occurencePath)
+                .document(occurence.occurenceId)
         return documentReference.delete()
     }
 
