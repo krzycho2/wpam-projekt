@@ -1,9 +1,9 @@
 package pw.elka.mobiasystent.model
 
-import com.google.firebase.database.IgnoreExtraProperties
+interface User {
+    var username: String
+    var email: String
+}
 
-data class User (
-    var username: String? ="",
-    var email: String?=""
-)
+
 
