@@ -1,14 +1,10 @@
-package pw.elka.mobiasystent
+package pw.elka.mobiasystent.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import pw.elka.mobiasystent.modelcontroller.AuthController
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import pw.elka.mobiasystent.R
 
 
 class MainActivity : AppCompatActivity() {
