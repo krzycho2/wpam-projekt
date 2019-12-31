@@ -10,7 +10,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import pw.elka.mobiasystent.R
-import pw.elka.mobiasystent.model.AccountType
 import pw.elka.mobiasystent.model.User
 
 class AuthController {
@@ -18,7 +17,6 @@ class AuthController {
     private var auth: FirebaseAuth
     private var user: FirebaseUser?
     private var flag = false;
-    private lateinit var userController: UserController;
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var mGoogleSignInOptions: GoogleSignInOptions
 
@@ -44,7 +42,6 @@ class AuthController {
             .addOnCompleteListener(ownerActivity) { task ->
                 if (task.isSuccessful) {
                     user = auth.currentUser;
-                    userController = UserController()
                     callback(true);
                 } else {
                     callback(false);
@@ -59,7 +56,6 @@ class AuthController {
         email: String,
         password: String,
         newUser: User,
-        type: AccountType,
         callback: (result: Boolean) -> Unit
     ): Boolean {
         var status = false
@@ -67,8 +63,7 @@ class AuthController {
             .addOnCompleteListener(ownerActivity) { task ->
                 if (task.isSuccessful) {
                     user = auth.currentUser
-                    userController = UserController()
-                    userController.initDB(type, newUser)
+
                     callback(true);
                 } else {
                     callback(false);
