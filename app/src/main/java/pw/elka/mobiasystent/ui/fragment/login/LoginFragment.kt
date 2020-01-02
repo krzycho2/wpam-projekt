@@ -2,6 +2,7 @@ package pw.elka.mobiasystent.ui.fragment.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,6 +85,7 @@ class LoginFragment : Fragment() {
 
     private fun signInWithGoogle() {
         val signInIntent = (activity as HostActivity).googleSignInClient.signInIntent
+        Log.d("DUPA", "PROBA ZALOGOWANIA PRZEZ GOOGLE")
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 }

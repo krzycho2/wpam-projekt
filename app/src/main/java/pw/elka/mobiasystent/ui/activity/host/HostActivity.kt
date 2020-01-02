@@ -54,6 +54,7 @@ class HostActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (
+                destination.id == R.id.onBoarding ||
                 destination.id == R.id.authFragment ||
                 destination.id == R.id.loginFragment ||
                 destination.id == R.id.signUpFragment
@@ -73,7 +74,7 @@ class HostActivity : AppCompatActivity() {
                 graph.startDestination = R.id.homeFragment
             }
         } else {
-            graph.startDestination = R.id.authFragment
+            graph.startDestination = R.id.onBoarding
 
         }
         navController.graph = graph
