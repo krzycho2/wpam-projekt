@@ -45,8 +45,8 @@ class OnBoarding : Fragment() {
         })
         viewModel.startNavigation.observe(this, Observer {
             if (it) {
-//                this.findNavController()
-//                    .navigate(OnBoardingDirections.actionOnBoardingToAuthFragment())
+                this.findNavController()
+                    .navigate(OnBoardingDirections.actionOnBoardingToAuthFragment())
                 Prefs.getInstance(context!!)!!.hasCompletedWalkthrough = false
                 viewModel.doneNavigation()
             }
