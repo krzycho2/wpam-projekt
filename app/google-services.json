@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "681962557671",
+    "firebase_url": "https://mobiasystentwpam.firebaseio.com",
+    "project_id": "mobiasystentwpam",
+    "storage_bucket": "mobiasystentwpam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681962557671:android:0fd8fbe0781b06a49a1242",
+        "android_client_info": {
+          "package_name": "pw.elka.mobiasystent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681962557671-4pf4g4701c2pv0jtji5a7s38j5kjkqtk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pw.elka.mobiasystent",
+            "certificate_hash": "89ecd058b4a7e30e6ecbbe5fdbb337e1a26f9950"
+          }
+        },
+        {
+          "client_id": "681962557671-kspu7cptc6i8ls3ti5vpddjos9il22j6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pw.elka.mobiasystent",
+            "certificate_hash": "4511820fd6c99fd19769d6275be95eb993281a5b"
+          }
+        },
+        {
+          "client_id": "681962557671-2728p4u506joprmqllapgriuu7nbq2vc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVq7IGRNw5lzfJ7_1DUj0P7ViIsloZS1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681962557671-2728p4u506joprmqllapgriuu7nbq2vc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
