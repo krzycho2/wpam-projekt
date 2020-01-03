@@ -2509,6 +2509,28 @@
 							"subViews": [
 								{
 									"_type": "EdgeLabelView",
+									"_id": "AAAAAAFvaFi3gm3WRJo=",
+									"_parent": {
+										"$ref": "AAAAAAFukv9PI5GHTRE="
+									},
+									"model": {
+										"$ref": "AAAAAAFukv9PIpGEdOU="
+									},
+									"font": "Arial;13;0",
+									"left": 503,
+									"top": 320,
+									"width": 70.45263671875,
+									"height": 13,
+									"alpha": 0.5235987755982988,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAFukv9PI5GHTRE="
+									},
+									"edgePosition": 2,
+									"text": "+Occurence"
+								},
+								{
+									"_type": "EdgeLabelView",
 									"_id": "AAAAAAFukv9PI5GIV8A=",
 									"_parent": {
 										"$ref": "AAAAAAFukv9PI5GHTRE="
@@ -2720,6 +2742,9 @@
 							},
 							"propertyLabel": {
 								"$ref": "AAAAAAFukv9PI5GK1Ok="
+							},
+							"tailRoleNameLabel": {
+								"$ref": "AAAAAAFvaFi3gm3WRJo="
 							},
 							"tailPropertyLabel": {
 								"$ref": "AAAAAAFukv9PI5GMjrg="
@@ -4088,6 +4113,22 @@
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
 					"name": "OccurenceViewModel"
+				},
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFvaFlbRW9If/4=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Uproszczony diagram"
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAFvaFnNO3ASejU=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Class2"
 				}
 			]
 		},

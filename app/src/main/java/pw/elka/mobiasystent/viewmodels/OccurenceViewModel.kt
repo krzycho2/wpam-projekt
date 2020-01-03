@@ -12,8 +12,11 @@ import pw.elka.mobiasystent.repos.OccurencesRepository
 class OccurenceViewModel : ViewModel() {
     val TAG = "OCCURENCE_VIEW_MODEL"
     var occurenceRepository = OccurencesRepository()
+
+    // Property with getter
     var savedOccurences: MutableLiveData<List<Occurence>> = MutableLiveData()
 
+    var singleOccurence: MutableLiveData<String> = MutableLiveData("Adam Kowalski poszedł do kina.")
 
     fun saveOccurenceToFirebase(occurence: Occurence) {
         occurenceRepository.saveOccurence(occurence).addOnFailureListener {
