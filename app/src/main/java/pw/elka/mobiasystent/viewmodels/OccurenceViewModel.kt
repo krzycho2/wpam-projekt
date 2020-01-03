@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 import pw.elka.mobiasystent.model.Occurence
+import pw.elka.mobiasystent.model.OccurenceType
 import pw.elka.mobiasystent.repos.OccurencesRepository
 
 class OccurenceViewModel : ViewModel() {
@@ -17,6 +18,14 @@ class OccurenceViewModel : ViewModel() {
     var savedOccurences: MutableLiveData<List<Occurence>> = MutableLiveData()
 
     var singleOccurence: MutableLiveData<String> = MutableLiveData("Adam Kowalski poszedł do kina.")
+
+    var exampleOccurences: MutableList<Occurence> = mutableListOf(
+     Occurence(occurenceId = "1", type = OccurenceType.VISIT, description = "Adam Kowalski: wizyta u lekarza"),
+     Occurence(occurenceId = "2", type = OccurenceType.ALERT, description = "Adam Kowalski: Upadek"),
+     Occurence(occurenceId = "3", type = OccurenceType.MEDICINETAKE, description = "Adam Kowalski: Pobranie leku")
+    )
+
+    var savedOcurrencesTest= MutableLiveData<List<Occurence>>(exampleOccurences)
 
     fun saveOccurenceToFirebase(occurence: Occurence) {
         occurenceRepository.saveOccurence(occurence).addOnFailureListener {
@@ -49,5 +58,7 @@ class OccurenceViewModel : ViewModel() {
             Log.e(TAG, "Failed to delete Occurences")
         }
     }
+
+
 
 }

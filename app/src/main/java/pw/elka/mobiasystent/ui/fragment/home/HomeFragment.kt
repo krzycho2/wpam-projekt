@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
 import pw.elka.mobiasystent.R
+import pw.elka.mobiasystent.adapter.OccurenceAdapter
 import pw.elka.mobiasystent.databinding.FragmentHomeBinding
 import pw.elka.mobiasystent.model.Occurence
 import pw.elka.mobiasystent.viewmodels.OccurenceViewModel
@@ -28,7 +29,6 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         Log.d("DUPA", "HOME fragment")
-        //binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding = DataBindingUtil.inflate(
             inflater,
@@ -37,12 +37,23 @@ class HomeFragment : Fragment() {
             false)
 
         viewModel = ViewModelProviders.of(this).get(OccurenceViewModel::class.java)
+
+        val adapter = OccurenceAdapter()
+        binding.OccurenceRecyclerView.adapter = adapter
+
         binding.occurenceViewModel = viewModel
 
         binding.lifecycleOwner = this
 
 //        viewModel.savedOccurences.observe(this, Observer{textOfOccurence -> binding.TextOccurence.text = textOfOccurence})
-        viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})
+        //viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})
+
+        viewModel.savedOcurrencesTest.observe(viewLifecycleOwner, Observer{
+            it?.let{
+                adapter.data = it
+            }
+        })
+
         return binding.root
     }
 }
