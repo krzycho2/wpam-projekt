@@ -11,9 +11,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.model.UserModel
 import pw.elka.mobiasystent.utils.MyApplication
-import pw.elka.mobiasystent.R
 
 class SignUpViewModel(private val myApplication: Application) : AndroidViewModel(myApplication) {
     private val auth = FirebaseAuth.getInstance()

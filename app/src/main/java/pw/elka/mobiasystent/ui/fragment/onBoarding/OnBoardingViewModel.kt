@@ -7,30 +7,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
 import pw.elka.mobiasystent.R
+
 import pw.elka.mobiasystent.model.SlideContent
 
 
 class OnBoardingViewModel(application: Application) : AndroidViewModel(application) {
     private val list = listOf(
         SlideContent(
-            ContextCompat.getDrawable(application.applicationContext, R.drawable.ic_fast)!!,
-            "Move Fast",
-            "Use our starter kit in Kotlin to build your apps faster"
+            ContextCompat.getDrawable(application.applicationContext, R.drawable.ic_people)!!,
+            "Witaj",
+            "Dzięki tej aplikacji będziesz mógł zadbać o najbliższych"
         ),
-        SlideContent(
-            ContextCompat.getDrawable(application.applicationContext, R.drawable.ic_kotlin)!!,
-            "Learn Kotlin",
-            "Learning Kotlin practically by working on a real project"
-        ),
-        SlideContent(
-            ContextCompat.getDrawable(application.applicationContext, R.drawable.ic_firebase)!!,
-            "Learn Firebase",
-            "Learn how to use Firebase as a backend for your Kotlin app"
-        ),
+
         SlideContent(
             ContextCompat.getDrawable(application.applicationContext, R.drawable.ic_save_time)!!,
-            "Save Time",
-            "Save a few days of development by starting with our app template"
+            "Oszczędność czasu",
+            "Dzięki aplikacji czeka Cie oszczędność czasu"
         )
     )
 

@@ -1,6 +1,7 @@
 package pw.elka.mobiasystent.ui.fragment.onBoarding
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class OnBoarding : Fragment() {
         binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         binding.onBoardingViewModel = viewModel
         binding.lifecycleOwner = this
-
+        Log.d("DUPA", "Onboard fragment")
         viewModel.dataSet.observe(this, Observer {
             viewPager2.adapter = sliderAdapter
             sliderAdapter.setItems(it)

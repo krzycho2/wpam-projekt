@@ -2,6 +2,7 @@ package pw.elka.mobiasystent.ui.fragment.home
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import pw.elka.mobiasystent.databinding.FragmentHomeBinding
 import pw.elka.mobiasystent.model.Occurence
 import pw.elka.mobiasystent.viewmodels.OccurenceViewModel
 
+
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
@@ -24,6 +26,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        Log.d("DUPA", "HOME fragment")
         //binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding = DataBindingUtil.inflate(
@@ -36,7 +40,6 @@ class HomeFragment : Fragment() {
         binding.occurenceViewModel = viewModel
 
         binding.lifecycleOwner = this
-        // jakies podpięcie
 
 //        viewModel.savedOccurences.observe(this, Observer{textOfOccurence -> binding.TextOccurence.text = textOfOccurence})
         viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})

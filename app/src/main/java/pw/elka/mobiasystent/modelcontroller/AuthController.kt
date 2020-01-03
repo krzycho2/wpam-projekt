@@ -10,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import pw.elka.mobiasystent.R
+
 import pw.elka.mobiasystent.model.User
 
 class AuthController {
