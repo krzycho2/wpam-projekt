@@ -8,9 +8,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -20,6 +23,7 @@ import pw.elka.mobiasystent.ui.activity.host.HostActivity
 import com.squareup.picasso.Picasso
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.databinding.FragmentSignUpBinding
+import pw.elka.mobiasystent.model.AccountType
 
 
 class SignUpFragment : Fragment() {
@@ -50,9 +54,26 @@ class SignUpFragment : Fragment() {
         }
         binding.etPhone.doAfterTextChanged { phone -> viewModel.phoneNumber = phone.toString() }
         binding.etEmail.doAfterTextChanged { email -> viewModel.email = email.toString() }
+        binding.etEmail2.doAfterTextChanged { email2 ->
+            viewModel.connectedEmail = email2.toString()
+        }
         binding.etPassword.doAfterTextChanged { password ->
             viewModel.password = password.toString()
         }
+
+        binding.atRole.setOnCheckedChangeListener { radioGroup: RadioGroup, i: Int ->
+            val choosen = view?.findViewById<RadioButton>(i)
+            if (choosen?.text == "Opiekun") {
+                Log.d("DUPA", "Wybrano opiekuna")
+
+                viewModel.role = AccountType.GUARD
+            } else {
+                Log.d("DUPA", "Wybrano Pacjenta")
+
+                viewModel.role = AccountType.PATIENT
+            }
+        }
+
         binding.selectPhoto.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 checkPermissions()
@@ -81,6 +102,12 @@ class SignUpFragment : Fragment() {
         viewModel.passwordError.observe(this, Observer {
             if (it.isNotEmpty()) {
                 binding.etPassword.error = it
+            }
+
+        })
+        viewModel.connectedError.observe(this, Observer {
+            if (it.isNotEmpty()) {
+                binding.etEmail2.error = it
             }
         })
         viewModel.navigateToHome.observe(this, Observer {

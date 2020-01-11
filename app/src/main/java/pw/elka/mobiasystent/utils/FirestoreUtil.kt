@@ -10,7 +10,7 @@ object FirestoreUtil {
 
     private val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document(
-            "users/${FirebaseAuth.getInstance().currentUser?.uid
+            "users/${FirebaseAuth.getInstance().currentUser?.email
                 ?: throw NullPointerException("UID is null.")}"
         )
 

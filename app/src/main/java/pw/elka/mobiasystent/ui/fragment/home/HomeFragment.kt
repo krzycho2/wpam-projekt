@@ -1,6 +1,7 @@
 package pw.elka.mobiasystent.ui.fragment.home
 
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.adapter.OccurenceAdapter
 import pw.elka.mobiasystent.databinding.FragmentHomeBinding
@@ -55,6 +57,7 @@ class HomeFragment : Fragment() {
                 adapter.data = it
             }
         })
+
 
         return binding.root
     }
