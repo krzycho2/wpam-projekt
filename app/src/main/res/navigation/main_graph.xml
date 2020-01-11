@@ -63,4 +63,9 @@
         android:name="pw.elka.mobiasystent.ui.fragment.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="pw.elka.mobiasystent.ui.fragment.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
