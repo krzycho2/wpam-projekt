@@ -12,6 +12,7 @@ class OccurencesRepository {
     var user = FirebaseAuth.getInstance().currentUser;
     val occurencePath: String = "occurences"
 
+// Jeśli user to guard, to otrzymuje Occurences od swojego pacjenta
 
     fun saveOccurence(occurence: Occurence): Task<Void> {
         var documentReference = firestoreDB.collection("users").document(user!!.email.toString())

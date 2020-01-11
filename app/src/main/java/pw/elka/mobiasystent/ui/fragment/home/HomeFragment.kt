@@ -48,6 +48,8 @@ class HomeFragment : Fragment() {
 //        viewModel.savedOccurences.observe(this, Observer{textOfOccurence -> binding.TextOccurence.text = textOfOccurence})
         //viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})
 
+        viewModel.getSavedOccurences().observe(this, Observer {  }) // bind to repository
+
         viewModel.savedOcurrencesTest.observe(viewLifecycleOwner, Observer{
             it?.let{
                 adapter.data = it

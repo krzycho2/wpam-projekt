@@ -8,8 +8,10 @@ import android.provider.ContactsContract
  */
 data class Guard(
     override var username: String = "",
-    override var email: String
-
+    override var email: String = "",
+    override var userID: String = "",
+    override var role: UserRole = UserRole.PATIENT,
+    override var telNumber: String = ""
 
 ): User {
     lateinit var pList: List<User>
