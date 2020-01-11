@@ -11,7 +11,7 @@
     <string name="facebookLogin">Facebook Login</string>
     <string name="facebook_app_id">686078505161575</string>
     <string name="fb_login_protocol_scheme">fb686078505161575</string>
-
+    <string name="connected_email">Email połączonego konta</string>
     <string name="fullName">Imię i Nazwisko</string>
     <string name="email">E-mail</string>
     <string name="password">Hasło</string>

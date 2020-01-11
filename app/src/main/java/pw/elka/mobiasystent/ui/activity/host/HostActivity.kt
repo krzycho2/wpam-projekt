@@ -101,7 +101,7 @@ class HostActivity : AppCompatActivity() {
 
     private fun getUserData() {
 
-        val ref = db.collection("users").document(mAuth.currentUser!!.uid)
+        val ref = db.collection("users").document(mAuth.currentUser!!.email!!)
 
         ref.get().addOnSuccessListener {
             val userInfo = it.toObject(UserModel::class.java)

@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import pw.elka.mobiasystent.R
+import pw.elka.mobiasystent.model.AccountType
 import pw.elka.mobiasystent.model.UserModel
 import pw.elka.mobiasystent.utils.MyApplication
 
@@ -23,7 +24,9 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
     var phoneNumber: String = ""
     var email: String = ""
     var password: String = ""
+    var connectedEmail: String = ""
     var imageUri: Uri? = null
+    var role: AccountType = AccountType.PATIENT;
 
     private val _fullNameError = MutableLiveData<String>()
     val fullNameError: LiveData<String>
@@ -40,6 +43,9 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
     private val _passwordError = MutableLiveData<String>()
     val passwordError: LiveData<String>
         get() = _passwordError
+    private val _connectedError = MutableLiveData<String>()
+    val connectedError: LiveData<String>
+        get() = _connectedError
 
     private val _buttonEnabled = MutableLiveData<Boolean>().apply { value = true }
     val buttonEnabled: LiveData<Boolean>
@@ -69,12 +75,11 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
                 myApplication.getString(R.string.malformed_email_error)
             password.length < 6 -> _passwordError.value =
                 myApplication.getString(R.string.short_password_error)
+            connectedEmail.isEmpty() -> _connectedError.value = "Connected email cannot be empty"
             else -> {
                 _buttonEnabled.value = false
                 //create user without image
-
                 auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-
                     if (imageUri == null) {
                         createUserWithoutImage()
                     } else {
@@ -101,6 +106,10 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
         items["userID"] = userid
         items["profilePictureURL"] = ""
         items["active"] = true
+        items["connectedEmail"] = connectedEmail
+        items["role"] = role.toString()
+        Log.d("DUPA", "connectedMail: ${items["connectedEmail"]}")
+        Log.d("DUPA", "role: ${items["role"]}")
         saveUserToDatabase(auth.currentUser!!, items)
 
     }
@@ -126,24 +135,26 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
             items["userID"] = userId
             items["profilePictureURL"] = downloadUri.toString()
             items["active"] = true
+            items["connectedEmail"] = connectedEmail
+            items["role"] = role.toString();
             saveUserToDatabase(auth.currentUser!!, items)
         }
     }
 
     private fun saveUserToDatabase(user: FirebaseUser, items: HashMap<String, Any>) {
 
-        database.collection("users").document(user.uid).set(items)
+        database.collection("users").document(user.email!!).set(items)
             .addOnSuccessListener {
                 val userModel = UserModel()
                 userModel.userID = user.uid
                 userModel.email = items["email"].toString()
-                userModel.firstName = items["firstName"].toString()
-                userModel.lastName = items["lastName"].toString()
-                userModel.userName = items["userName"].toString()
+                userModel.userName = items["firstName"].toString()
                 userModel.profilePictureURL = items["profilePictureURL"].toString()
                 userModel.active = true
+                userModel.connectedEmail = items["connectedEmail"].toString()
+                userModel.role= items["role"].toString()
                 MyApplication.currentUser = userModel
-                Log.d("SignUp state", "save user:success")
+                Log.d("DUPA", "save user:success")
                 _navigateToHome.value = true
             }.addOnFailureListener {
                 _signUpError.value = it.message

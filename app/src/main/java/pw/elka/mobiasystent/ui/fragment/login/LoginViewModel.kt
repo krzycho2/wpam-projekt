@@ -70,7 +70,7 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun getFirebaseUserData() {
-        val ref = db.collection("users").document(mAuth.currentUser!!.uid)
+        val ref = db.collection("users").document(mAuth.currentUser!!.email!!)
         ref.get().addOnSuccessListener {
             val userInfo = it.toObject(UserModel::class.java)
             MyApplication.currentUser = userInfo
@@ -94,8 +94,8 @@ class LoginViewModel : ViewModel() {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val userId = task.result!!.user!!.uid
-                    db.collection("users").document(userId)
+                    val userEmail = task.result!!.user!!.email!!
+                    db.collection("users").document(userEmail)
                         .get()
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
@@ -161,7 +161,7 @@ class LoginViewModel : ViewModel() {
         currentUser: FirebaseUser?,
         items: java.util.HashMap<String, Any>
     ) {
-        db.collection("users").document(currentUser!!.uid).set(items).addOnSuccessListener {
+        db.collection("users").document(currentUser!!.email!!).set(items).addOnSuccessListener {
             val userInfo = UserModel()
             userInfo.userID = currentUser.uid
             userInfo.email = items["email"].toString()
@@ -221,8 +221,8 @@ class LoginViewModel : ViewModel() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         mAuth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                val userId = it.result!!.user!!.uid
-                db.collection("users").document(userId)
+                val userEmail = it.result!!.user!!.email!!
+                db.collection("users").document(userEmail)
                     .get()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

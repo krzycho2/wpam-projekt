@@ -10,5 +10,7 @@ data class UserModel(
     var email: String = "",
     var fcmToken: String = "",
     var selected: Boolean = false,
-    var userName: String = ""
+    var userName: String = "",
+    var connectedEmail: String = "",
+    var role: String = AccountType.GUARD.toString()
 )
