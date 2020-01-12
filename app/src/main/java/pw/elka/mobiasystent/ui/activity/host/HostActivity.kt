@@ -3,8 +3,10 @@ package pw.elka.mobiasystent.ui.activity.host
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -12,6 +14,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+//import com.google.android.material.bottomnavigation.BottomNavigationView
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import pw.elka.mobiasystent.model.UserModel
@@ -21,6 +26,9 @@ import pw.elka.mobiasystent.utils.Prefs
 import kotlinx.android.synthetic.main.activity_host.*
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.databinding.DrawerHeaderLayoutBinding
+import pw.elka.mobiasystent.ui.fragment.AssignedPersonFragment
+import pw.elka.mobiasystent.ui.fragment.CalendarFragment
+import pw.elka.mobiasystent.ui.fragment.home.HomeFragment
 
 class HostActivity : AppCompatActivity() {
     lateinit var googleSignInClient: GoogleSignInClient
@@ -29,12 +37,16 @@ class HostActivity : AppCompatActivity() {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navViewBinding: DrawerHeaderLayoutBinding
+
+    lateinit var bottomBar: ActionBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_host)
         val toolbar = customToolbar
         setSupportActionBar(toolbar)
+
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -97,6 +109,7 @@ class HostActivity : AppCompatActivity() {
             }
             true
         }
+
     }
 
     private fun getUserData() {
@@ -120,5 +133,7 @@ class HostActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
+
+
 
 }

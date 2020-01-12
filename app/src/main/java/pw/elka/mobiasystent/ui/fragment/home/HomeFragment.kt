@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.adapter.OccurenceAdapter
@@ -58,7 +59,17 @@ class HomeFragment : Fragment() {
             }
         })
 
+        binding.buttonAssignedPerson.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_homeFragment_to_assignedPersonFragment)
+        }
+
+        binding.buttonCalendar.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
+        }
+
 
         return binding.root
     }
+
+
 }
