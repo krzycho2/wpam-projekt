@@ -15,7 +15,7 @@ class OccurenceViewModel : ViewModel() {
     var occurenceRepository = OccurencesRepository()
 
     // Property with getter
-    var savedOccurences: MutableLiveData<List<Occurence>> = MutableLiveData()
+    private var allOccurences: MutableLiveData<List<Occurence>> = MutableLiveData()
 
     var singleOccurence: MutableLiveData<String> = MutableLiveData("Adam Kowalski poszedł do kina.")
 
@@ -38,7 +38,7 @@ class OccurenceViewModel : ViewModel() {
             .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
                 if (e != null) {
                     Log.w(TAG, "Listen failed.", e)
-                    savedOccurences.value = null
+                    allOccurences.value = null
                     return@EventListener
                 }
 
@@ -47,10 +47,10 @@ class OccurenceViewModel : ViewModel() {
                     var addressItem = doc.toObject(Occurence::class.java)
                     savedOccurencesList.add(addressItem)
                 }
-                savedOccurences.value = savedOccurencesList
+                allOccurences.value = savedOccurencesList
             })
 
-        return savedOccurences
+        return allOccurences
     }
 
     fun deleteOccurence(occurence: Occurence) {

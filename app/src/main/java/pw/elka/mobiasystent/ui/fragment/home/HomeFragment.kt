@@ -1,6 +1,7 @@
 package pw.elka.mobiasystent.ui.fragment.home
 
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import androidx.navigation.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.adapter.OccurenceAdapter
 import pw.elka.mobiasystent.databinding.FragmentHomeBinding
@@ -48,12 +51,25 @@ class HomeFragment : Fragment() {
 //        viewModel.savedOccurences.observe(this, Observer{textOfOccurence -> binding.TextOccurence.text = textOfOccurence})
         //viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})
 
+        viewModel.getSavedOccurences().observe(this, Observer {  }) // bind to repository
+
         viewModel.savedOcurrencesTest.observe(viewLifecycleOwner, Observer{
             it?.let{
                 adapter.data = it
             }
         })
 
+        binding.buttonAssignedPerson.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_homeFragment_to_assignedPersonFragment)
+        }
+
+        binding.buttonCalendar.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
+        }
+
+
         return binding.root
     }
+
+
 }

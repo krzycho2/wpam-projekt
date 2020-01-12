@@ -3,32 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="occurenceViewModel"
-            type="pw.elka.mobiasystent.viewmodels.OccurenceViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.home.HomeFragment">
+        tools:context=".ui.fragment.home.AssignedPersonFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/OccurenceRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/buttonHome"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/buttonHome"
@@ -57,6 +36,16 @@
             app:layout_constraintEnd_toStartOf="@+id/buttonHome"
             app:layout_constraintHorizontal_bias="0.366"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/Napis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Przydzielona osoba"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
