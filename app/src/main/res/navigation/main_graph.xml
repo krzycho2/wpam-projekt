@@ -94,4 +94,11 @@
             android:id="@+id/action_calendarFragment_to_assignedPersonFragment"
             app:destination="@+id/assignedPersonFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="pw.elka.mobiasystent.ui.fragment.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/fragment_settings" />
+
 </navigation>

@@ -106,6 +106,9 @@ class HostActivity : AppCompatActivity() {
                     MyApplication.currentUser = null
                     navController.navigate(R.id.action_logout)
                 }
+                R.id.action_settings -> {
+                    navController.navigate(R.id.settingsFragment)
+                }
             }
             true
         }
