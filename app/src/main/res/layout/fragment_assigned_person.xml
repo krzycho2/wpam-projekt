@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/text_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#C1EEE18C"
@@ -12,7 +11,7 @@
 
 
         <TextView
-            android:id="@+id/address_data_text"
+            android:id="@+id/text_address_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
@@ -21,27 +20,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toEndOf="@+id/address_text"
-            app:layout_constraintTop_toBottomOf="@+id/name_data_text" />
+            app:layout_constraintTop_toBottomOf="@+id/text_name_data" />
 
         <TextView
-            android:id="@+id/name_text"
+            android:id="@+id/text_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="250dp"
-            android:text="Imię i nazwisko"
+            android:text="@string/key_fullname"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/image_avatar" />
 
         <TextView
-            android:id="@+id/name_data_text"
+            android:id="@+id/text_name_data"
             android:layout_width="123dp"
             android:layout_height="20dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="50dp"
             android:text="Karol Adamczyk"
-            app:layout_constraintStart_toEndOf="@+id/name_text"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintStart_toEndOf="@+id/text_name"
+            app:layout_constraintTop_toBottomOf="@+id/image_avatar" />
 
         <TextView
             android:id="@+id/address_text"
@@ -49,9 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="250dp"
-            android:text="Adres zamieszkania"
+            android:text="@string/key_address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_text" />
+            app:layout_constraintTop_toBottomOf="@+id/text_name" />
 
         <Button
             android:id="@+id/buttonHome"
@@ -82,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/title_text"
+            android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -95,74 +94,67 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/image_avatar"
+            android:layout_width="170dp"
+            android:layout_height="136dp"
             android:layout_marginTop="70dp"
+            android:src="@drawable/anonymity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text"
-            tools:srcCompat="@tools:sample/avatars[11]" />
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
         <TextView
-            android:id="@+id/tel_text"
+            android:id="@+id/text_tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="250dp"
-            android:text="Telefon"
+            android:text="@string/key_tel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/address_text" />
 
         <TextView
-            android:id="@+id/tel_data_text"
+            android:id="@+id/text_tel_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginTop="36dp"
             android:text="0-700-880"
-            app:layout_constraintStart_toEndOf="@+id/tel_text"
-            app:layout_constraintTop_toBottomOf="@+id/address_data_text" />
+            app:layout_constraintStart_toEndOf="@+id/text_tel"
+            app:layout_constraintTop_toBottomOf="@+id/text_address_data" />
 
         <TextView
-            android:id="@+id/mail_text"
+            android:id="@+id/text_mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="250dp"
-            android:text="Adres e-mail"
+            android:text="@string/key_email"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tel_text" />
+            app:layout_constraintTop_toBottomOf="@+id/text_tel" />
 
         <TextView
-            android:id="@+id/mail_data_text"
+            android:id="@+id/text_mail_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginTop="36dp"
             android:text="k.adamczyk@gmail.com"
-            app:layout_constraintStart_toEndOf="@+id/mail_text"
-            app:layout_constraintTop_toBottomOf="@+id/tel_data_text" />
+            app:layout_constraintStart_toEndOf="@+id/text_mail"
+            app:layout_constraintTop_toBottomOf="@+id/text_tel_data" />
 
         <Button
-            android:id="@+id/call_button"
+            android:id="@+id/button_call"
             android:layout_width="103dp"
             android:layout_height="47dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="24dp"
-            android:text="Zadzwoń"
+            android:text="@string/button_call_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/tel_data_text"
-            app:layout_constraintTop_toBottomOf="@+id/address_data_text" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintStart_toEndOf="@+id/text_tel_data"
+            app:layout_constraintTop_toBottomOf="@+id/text_address_data" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

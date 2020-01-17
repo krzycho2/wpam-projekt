@@ -9,13 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.google.firebase.firestore.auth.User
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.databinding.FragmentAssignedPersonBinding
+import pw.elka.mobiasystent.model.UserModel
 
 
 class AssignedPersonFragment : Fragment() {
 
     private lateinit var binding: FragmentAssignedPersonBinding
+
+    private lateinit var user: UserModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +42,11 @@ class AssignedPersonFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun exampleUser(): UserModel
+    {
+        return UserModel()
     }
 
 }
