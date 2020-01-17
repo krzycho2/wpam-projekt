@@ -2,6 +2,7 @@ package pw.elka.mobiasystent.ui.activity.host
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -46,7 +47,7 @@ class HostActivity : AppCompatActivity() {
         setContentView(R.layout.activity_host)
         val toolbar = customToolbar
         setSupportActionBar(toolbar)
-
+        if (mAuth.currentUser != null) {getUserData()}
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -123,6 +124,7 @@ class HostActivity : AppCompatActivity() {
             val userInfo = it.toObject(UserModel::class.java)
             navViewBinding.user = userInfo
             MyApplication.currentUser = userInfo
+            Log.d("DUPA", "dodano usera");
             MyApplication.currentUser!!.active = true
             FirestoreUtil.updateUser(MyApplication.currentUser!!) {
             }

@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "681962557671-4pf4g4701c2pv0jtji5a7s38j5kjkqtk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "pw.elka.mobiasystent",
-            "certificate_hash": "89ecd058b4a7e30e6ecbbe5fdbb337e1a26f9950"
-          }
-        },
-        {
           "client_id": "681962557671-kspu7cptc6i8ls3ti5vpddjos9il22j6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
