@@ -36,6 +36,8 @@ class CalendarFragment : Fragment() {
             view.findNavController().navigate(R.id.action_calendarFragment_to_homeFragment)
         }
 
+
+
         return binding.root
     }
 
