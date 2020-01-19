@@ -28,13 +28,13 @@ class CalendarFragment : Fragment() {
             container,
             false)
 
-        binding.buttonAssignedPerson.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_calendarFragment_to_assignedPersonFragment)
-        }
-
-        binding.buttonHome.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_calendarFragment_to_homeFragment)
-        }
+//        binding.buttonAssignedPerson.setOnClickListener { view: View ->
+//            view.findNavController().navigate(R.id.action_calendarFragment_to_assignedPersonFragment)
+//        }
+//
+//        binding.buttonHome.setOnClickListener { view: View ->
+//            view.findNavController().navigate(R.id.action_calendarFragment_to_homeFragment)
+//        }
 
 
 

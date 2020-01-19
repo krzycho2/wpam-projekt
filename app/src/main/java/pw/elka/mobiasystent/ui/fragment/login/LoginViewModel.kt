@@ -2,6 +2,7 @@ package pw.elka.mobiasystent.ui.fragment.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -74,7 +75,8 @@ class LoginViewModel : ViewModel() {
         ref.get().addOnSuccessListener {
             val userInfo = it.toObject(UserModel::class.java)
             MyApplication.currentUser = userInfo
-            MyApplication.currentUser!!.active = true
+            Log.d("DUPA", userInfo.toString())
+//            MyApplication.currentUser!!.active = true
             FirestoreUtil.updateUser(MyApplication.currentUser!!) {
 
             }

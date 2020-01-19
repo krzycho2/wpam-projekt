@@ -59,13 +59,13 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.buttonAssignedPerson.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_assignedPersonFragment)
-        }
-
-        binding.buttonCalendar.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
-        }
+//        binding.buttonAssignedPerson.setOnClickListener { view: View ->
+//            view.findNavController().navigate(R.id.action_homeFragment_to_assignedPersonFragment)
+//        }
+//
+//        binding.buttonCalendar.setOnClickListener { view: View ->
+//            view.findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
+//        }
 
 
         return binding.root

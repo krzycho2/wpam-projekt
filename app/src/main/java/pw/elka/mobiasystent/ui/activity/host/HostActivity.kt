@@ -9,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -39,14 +42,15 @@ class HostActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navViewBinding: DrawerHeaderLayoutBinding
 
-    lateinit var bottomBar: ActionBar
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_host)
         val toolbar = customToolbar
+        val bb = bottomBar
+
         setSupportActionBar(toolbar)
+
         if (mAuth.currentUser != null) {getUserData()}
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -57,13 +61,19 @@ class HostActivity : AppCompatActivity() {
 
         drawerLayout = drawer_layout
         navViewBinding = DrawerHeaderLayoutBinding.inflate(layoutInflater, navView, true)
+
         val navHost =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHost.navController
-
         val navInflater = navController.navInflater
 
         val graph = navInflater.inflate(R.navigation.main_graph)
+
+        val navBar: BottomNavigationView = findViewById(R.id.bottomBar)
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.homeFragment, R.id.calendarFragment, R.id.assignedPersonFragment))
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navBar.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (
@@ -73,8 +83,10 @@ class HostActivity : AppCompatActivity() {
                 destination.id == R.id.signUpFragment
             ) {
                 toolbar.visibility = View.GONE
+                bb.visibility = View.GONE
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             } else {
+                bb.visibility = View.VISIBLE
                 toolbar.visibility = View.VISIBLE
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             }
@@ -126,7 +138,9 @@ class HostActivity : AppCompatActivity() {
             navViewBinding.user = userInfo
             MyApplication.currentUser = userInfo
             Log.d("DUPA", "dodano usera");
-            MyApplication.currentUser!!.active = true
+            Log.d("DUPA", userInfo.toString());
+
+            MyApplication.currentUser?.active = true
             FirestoreUtil.updateUser(MyApplication.currentUser!!) {
             }
         }.addOnFailureListener {
