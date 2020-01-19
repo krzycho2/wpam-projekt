@@ -48,8 +48,8 @@ class AssignedPersonFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(AssignedPersonViewModel::class.java)
 
         binding.buttonCall.setOnClickListener{view:View ->
-            //callToPerson()
-            Log.d("DUPA", "kliknieto guzik");
+            callToPerson()
+            //Log.d("DUPA", "kliknieto guzik");
         }
 
         return binding.root
