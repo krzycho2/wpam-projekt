@@ -4,6 +4,7 @@
     package="pw.elka.mobiasystent"
     >
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
         android:name="pw.elka.mobiasystent.utils.MyApplication"
         android:allowBackup="false"

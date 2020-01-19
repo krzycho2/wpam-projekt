@@ -1,16 +1,17 @@
 package pw.elka.mobiasystent.ui.fragment
 
-import android.content.Context
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.google.firebase.firestore.auth.User
+import kotlinx.android.synthetic.main.fragment_assigned_person.*
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.databinding.FragmentAssignedPersonBinding
 import pw.elka.mobiasystent.model.UserModel
@@ -45,8 +46,19 @@ class AssignedPersonFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(AssignedPersonViewModel::class.java)
 
+        binding.buttonCall.setOnClickListener{view:View ->
+            callToPerson()
+        }
 
         return binding.root
+    }
+
+
+    @SuppressLint("MissingPermission")
+    fun callToPerson() {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:" + viewModel.phoneNumber)
+        context!!.startActivity(intent)
     }
 
 
