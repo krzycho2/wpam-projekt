@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +48,8 @@ class AssignedPersonFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(AssignedPersonViewModel::class.java)
 
         binding.buttonCall.setOnClickListener{view:View ->
-            callToPerson()
+            //callToPerson()
+            Log.d("DUPA", "kliknieto guzik");
         }
 
         return binding.root

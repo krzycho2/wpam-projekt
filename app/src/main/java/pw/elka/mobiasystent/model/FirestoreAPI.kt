@@ -37,6 +37,35 @@ class FirestoreAPI {
             }
         }
 
+        fun updateAppUser(user:UserModel)
+        {
+            var firestoreDB = FirebaseFirestore.getInstance()
+            val items = HashMap<String, Any>()
+            items["email"] = FirebaseAuth.getInstance().currentUser!!.email!!
+            items["firstName"] = user.firstName
+            //items["lastName"] = ""
+            //items["userName"] = ""
+            items["phoneNumber"] = user.phoneNumber
+            items["userID"] = user.userID
+            items["profilePictureURL"] = user.profilePictureURL
+            items["active"] = true
+            items["assignedPersonEmail"] = user.assignedPersonEmail
+            //
+             items["role"] = user.role;
+            Log.d("DUPA", "user.email!!")
+            Log.d("DUPA", user.toString()
+            )
+
+            firestoreDB.collection("users").document(FirebaseAuth.getInstance().currentUser!!.email!!).set(items)
+                .addOnSuccessListener {
+
+                    Log.d("DUPA", "save user:success")
+
+                }.addOnFailureListener {
+                    Log.d("DUPA", "save user:error")
+                }
+        }
+
 
     }
 }

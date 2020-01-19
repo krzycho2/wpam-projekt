@@ -109,6 +109,7 @@ class HostActivity : AppCompatActivity() {
                 }
                 R.id.action_settings -> {
                     navController.navigate(R.id.settingsFragment)
+                    getSupportActionBar()!!.setTitle("Ustawienia")
                 }
             }
             true
