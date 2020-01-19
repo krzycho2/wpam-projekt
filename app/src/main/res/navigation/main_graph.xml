@@ -62,7 +62,11 @@
         android:id="@+id/homeFragment"
         android:name="pw.elka.mobiasystent.ui.fragment.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_occurenceAdd"
+            app:destination="@id/occurenceAdd" />
+    </fragment>
     <fragment
         android:id="@+id/assignedPersonFragment"
         android:name="pw.elka.mobiasystent.ui.fragment.AssignedPersonFragment"
@@ -79,5 +83,10 @@
         android:name="pw.elka.mobiasystent.ui.fragment.settings.SettingsFragment"
         android:label="settings_fragment"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/occurenceAdd"
+        android:name="pw.elka.mobiasystent.ui.fragment.occurenceadd.OccurenceAdd"
+        android:label="occurence_add_fragment"
+        tools:layout="@layout/occurence_add_fragment" />
 
 </navigation>

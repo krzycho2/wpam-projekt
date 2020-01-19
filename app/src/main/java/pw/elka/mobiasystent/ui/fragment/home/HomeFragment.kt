@@ -37,7 +37,8 @@ class HomeFragment : Fragment() {
             inflater,
             R.layout.fragment_home,
             container,
-            false)
+            false
+        )
 
         viewModel = ViewModelProviders.of(this).get(OccurenceViewModel::class.java)
 
@@ -51,13 +52,18 @@ class HomeFragment : Fragment() {
 //        viewModel.savedOccurences.observe(this, Observer{textOfOccurence -> binding.TextOccurence.text = textOfOccurence})
         //viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})
 
-        viewModel.getSavedOccurences().observe(this, Observer {  }) // bind to repository
+        viewModel.getSavedOccurences().observe(this.viewLifecycleOwner, Observer { }) // bind to repository
 
-        viewModel.savedOcurrencesTest.observe(viewLifecycleOwner, Observer{
-            it?.let{
+        viewModel.savedOcurrencesTest.observe(viewLifecycleOwner, Observer {
+            it?.let {
                 adapter.data = it
             }
         })
+
+        binding.addOccurence.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_homeFragment_to_occurenceAdd)
+        }
+
 
 //        binding.buttonAssignedPerson.setOnClickListener { view: View ->
 //            view.findNavController().navigate(R.id.action_homeFragment_to_assignedPersonFragment)
