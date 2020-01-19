@@ -55,7 +55,7 @@ class SignUpFragment : Fragment() {
         binding.etPhone.doAfterTextChanged { phone -> viewModel.phoneNumber = phone.toString() }
         binding.etEmail.doAfterTextChanged { email -> viewModel.email = email.toString() }
         binding.etEmail2.doAfterTextChanged { email2 ->
-            viewModel.connectedEmail = email2.toString()
+            viewModel.assignedPersonEmail = email2.toString()
         }
         binding.etPassword.doAfterTextChanged { password ->
             viewModel.password = password.toString()

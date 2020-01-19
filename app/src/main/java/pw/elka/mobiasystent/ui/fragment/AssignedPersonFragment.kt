@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.firebase.firestore.auth.User
 import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.databinding.FragmentAssignedPersonBinding
 import pw.elka.mobiasystent.model.UserModel
+import pw.elka.mobiasystent.viewmodels.AssignedPersonViewModel
 
 
 class AssignedPersonFragment : Fragment() {
@@ -21,6 +23,7 @@ class AssignedPersonFragment : Fragment() {
 
     private lateinit var user: UserModel
 
+    private lateinit var viewModel: AssignedPersonViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,13 +43,12 @@ class AssignedPersonFragment : Fragment() {
             view.findNavController().navigate(R.id.action_assignedPersonFragment_to_calendarFragment)
         }
 
+        viewModel = ViewModelProviders.of(this).get(AssignedPersonViewModel::class.java)
+
 
         return binding.root
     }
 
-    private fun exampleUser(): UserModel
-    {
-        return UserModel()
-    }
+
 
 }

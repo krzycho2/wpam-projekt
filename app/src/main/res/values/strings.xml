@@ -37,5 +37,6 @@
     <string name="key_tel">Telefon</string>
     <string name="key_email">Adres e-mail</string>
     <string name="button_call_text">Zadzwoń</string>
+    <string name="title_assigned_person">Przydzielona osoba</string>
 
 </resources>

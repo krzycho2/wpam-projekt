@@ -24,7 +24,7 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
     var phoneNumber: String = ""
     var email: String = ""
     var password: String = ""
-    var connectedEmail: String = ""
+    var assignedPersonEmail: String = ""
     var imageUri: Uri? = null
     var role: AccountType = AccountType.PATIENT;
 
@@ -75,7 +75,7 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
                 myApplication.getString(R.string.malformed_email_error)
             password.length < 6 -> _passwordError.value =
                 myApplication.getString(R.string.short_password_error)
-            connectedEmail.isEmpty() -> _connectedError.value = "Connected email cannot be empty"
+            assignedPersonEmail.isEmpty() -> _connectedError.value = "Connected email cannot be empty"
             else -> {
                 _buttonEnabled.value = false
                 //create user without image
@@ -106,9 +106,9 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
         items["userID"] = userid
         items["profilePictureURL"] = ""
         items["active"] = true
-        items["connectedEmail"] = connectedEmail
+        items["assignedPersonEmail"] = assignedPersonEmail
         items["role"] = role.toString()
-        Log.d("DUPA", "connectedMail: ${items["connectedEmail"]}")
+        Log.d("DUPA", "connectedMail: ${items["assignedPersonEmail"]}")
         Log.d("DUPA", "role: ${items["role"]}")
         saveUserToDatabase(auth.currentUser!!, items)
 
@@ -135,7 +135,7 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
             items["userID"] = userId
             items["profilePictureURL"] = downloadUri.toString()
             items["active"] = true
-            items["connectedEmail"] = connectedEmail
+            items["assignedPersonEmail"] = assignedPersonEmail
             items["role"] = role.toString();
             saveUserToDatabase(auth.currentUser!!, items)
         }
@@ -151,7 +151,7 @@ class SignUpViewModel(private val myApplication: Application) : AndroidViewModel
                 userModel.userName = items["firstName"].toString()
                 userModel.profilePictureURL = items["profilePictureURL"].toString()
                 userModel.active = true
-                userModel.connectedEmail = items["connectedEmail"].toString()
+                userModel.assignedPersonEmail = items["assignedPersonEmail"].toString()
                 userModel.role= items["role"].toString()
                 MyApplication.currentUser = userModel
                 Log.d("DUPA", "save user:success")

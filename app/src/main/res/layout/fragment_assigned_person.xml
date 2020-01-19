@@ -3,25 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="assignedPersonViewModel"
+            type="pw.elka.mobiasystent.viewmodels.AssignedPersonViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#C1EEE18C"
         tools:context=".ui.fragment.home.AssignedPersonFragment">
 
-
+<!--        Tytuł-->
         <TextView
-            android:id="@+id/text_address_data"
+            android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="36dp"
-            android:text="Warszawa, Marszałkowska 1"
+            android:layout_marginTop="24dp"
+            android:text="@string/title_assigned_person"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.125"
-            app:layout_constraintStart_toEndOf="@+id/address_text"
-            app:layout_constraintTop_toBottomOf="@+id/text_name_data" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+<!--        Avatar-->
+        <ImageView
+            android:id="@+id/image_avatar"
+            android:layout_width="170dp"
+            android:layout_height="136dp"
+            android:layout_marginTop="70dp"
+            android:src="@{assignedPersonViewModel.profilePictureURL}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+        <!--        Imię i nazwisko-->
         <TextView
             android:id="@+id/text_name"
             android:layout_width="wrap_content"
@@ -38,12 +58,13 @@
             android:layout_height="20dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="50dp"
-            android:text="Karol Adamczyk"
+            android:text="@{assignedPersonViewModel.name}"
             app:layout_constraintStart_toEndOf="@+id/text_name"
             app:layout_constraintTop_toBottomOf="@+id/image_avatar" />
 
+<!--        Adres zamieszkania -->
         <TextView
-            android:id="@+id/address_text"
+            android:id="@+id/text_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -51,6 +72,74 @@
             android:text="@string/key_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_name" />
+
+        <TextView
+            android:id="@+id/text_address_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="36dp"
+            android:text="@{assignedPersonViewModel.address}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toEndOf="@+id/text_address"
+            app:layout_constraintTop_toBottomOf="@+id/text_name_data" />
+
+
+<!--        Telefon-->
+        <TextView
+            android:id="@+id/text_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="250dp"
+            android:text="@string/key_tel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_address" />
+
+        <TextView
+            android:id="@+id/text_tel_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="36dp"
+            android:text="@{assignedPersonViewModel.phoneNumber}"
+            app:layout_constraintStart_toEndOf="@+id/text_tel"
+            app:layout_constraintTop_toBottomOf="@+id/text_address_data" />
+
+<!--        Adres email-->
+        <TextView
+            android:id="@+id/text_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="250dp"
+            android:text="@string/key_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_tel" />
+
+        <TextView
+            android:id="@+id/text_mail_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="36dp"
+            android:text="@{assignedPersonViewModel.email}"
+            app:layout_constraintStart_toEndOf="@+id/text_mail"
+            app:layout_constraintTop_toBottomOf="@+id/text_tel_data" />
+
+<!--        Bottom bar - nawigacja między fragmentami-->
+        <Button
+            android:id="@+id/button_call"
+            android:layout_width="103dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/button_call_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/text_tel_data"
+            app:layout_constraintTop_toBottomOf="@+id/text_address_data" />
 
         <Button
             android:id="@+id/buttonHome"
@@ -80,81 +169,6 @@
             app:layout_constraintHorizontal_bias="0.366"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Przydzielona osoba"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/image_avatar"
-            android:layout_width="170dp"
-            android:layout_height="136dp"
-            android:layout_marginTop="70dp"
-            android:src="@drawable/anonymity"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title" />
-
-        <TextView
-            android:id="@+id/text_tel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="250dp"
-            android:text="@string/key_tel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/address_text" />
-
-        <TextView
-            android:id="@+id/text_tel_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="36dp"
-            android:text="0-700-880"
-            app:layout_constraintStart_toEndOf="@+id/text_tel"
-            app:layout_constraintTop_toBottomOf="@+id/text_address_data" />
-
-        <TextView
-            android:id="@+id/text_mail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="250dp"
-            android:text="@string/key_email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_tel" />
-
-        <TextView
-            android:id="@+id/text_mail_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="36dp"
-            android:text="k.adamczyk@gmail.com"
-            app:layout_constraintStart_toEndOf="@+id/text_mail"
-            app:layout_constraintTop_toBottomOf="@+id/text_tel_data" />
-
-        <Button
-            android:id="@+id/button_call"
-            android:layout_width="103dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/button_call_text"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/text_tel_data"
-            app:layout_constraintTop_toBottomOf="@+id/text_address_data" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
