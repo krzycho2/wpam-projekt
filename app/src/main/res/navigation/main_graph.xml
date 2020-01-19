@@ -87,6 +87,10 @@
         android:id="@+id/occurenceAdd"
         android:name="pw.elka.mobiasystent.ui.fragment.occurenceadd.OccurenceAdd"
         android:label="occurence_add_fragment"
-        tools:layout="@layout/occurence_add_fragment" />
+        tools:layout="@layout/occurence_add_fragment" >
+        <action
+            android:id="@+id/action_occurenceAdd_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>
