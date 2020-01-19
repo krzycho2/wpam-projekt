@@ -12,6 +12,9 @@ class AssignedPersonViewModel: ViewModel() {
     var email = MutableLiveData<String>("")
     var address = MutableLiveData<String>("")
 
+    init{
+
+    }
 
     private fun exampleUser(): UserModel
     {

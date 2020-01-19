@@ -23,10 +23,8 @@ class OccurencesRepository {
 // Jeśli user to guard, to otrzymuje Occurences od swojego pacjenta
 
     fun saveOccurence(occurence: Occurence): Task<Void> {
-        if(MyApplication.currentUser == null)
-            FirestoreAPI.setAppUser()
 
-        user = MyApplication.currentUser!!
+        user = FirestoreAPI.getCurrentUser()
         var emailToAdd: String = user!!.email
         if (user!!.role == AccountType.GUARD.toString()) {
             emailToAdd = MyApplication.currentUser!!.assignedPersonEmail
@@ -59,10 +57,8 @@ class OccurencesRepository {
     }
 
     fun deleteOccurences(occurence: Occurence): Task<Void> {
-        if(MyApplication.currentUser == null)
-            FirestoreAPI.setAppUser()
 
-        user = MyApplication.currentUser!!
+        user = FirestoreAPI.getCurrentUser()
         var emailToAdd: String = user!!.email
         if (user!!.role == AccountType.GUARD.toString()) {
             emailToAdd = MyApplication.currentUser!!.assignedPersonEmail

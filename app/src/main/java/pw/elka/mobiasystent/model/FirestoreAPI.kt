@@ -9,6 +9,15 @@ import pw.elka.mobiasystent.utils.MyApplication
 
 class FirestoreAPI {
     companion object{
+
+        fun getCurrentUser() : UserModel
+        {
+            if(MyApplication.currentUser == null)
+                setAppUser()
+
+            return MyApplication.currentUser!!
+        }
+
         fun setAppUser()
         {
             var firestoreDB = FirebaseFirestore.getInstance()
@@ -27,5 +36,7 @@ class FirestoreAPI {
                 Log.d("DUPA", "Błąd");
             }
         }
+
+
     }
 }
