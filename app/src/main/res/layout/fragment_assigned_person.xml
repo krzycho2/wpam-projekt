@@ -35,7 +35,7 @@
             android:layout_width="170dp"
             android:layout_height="136dp"
             android:layout_marginTop="70dp"
-            android:src="@{assignedPersonViewModel.profilePictureURL}"
+            android:src="@drawable/anonymity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/text_name_data"
-            android:layout_width="123dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginStart="60dp"
             android:layout_marginTop="50dp"
@@ -81,7 +81,7 @@
             android:layout_marginTop="36dp"
             android:text="@{assignedPersonViewModel.address}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/text_address"
             app:layout_constraintTop_toBottomOf="@+id/text_name_data" />
 

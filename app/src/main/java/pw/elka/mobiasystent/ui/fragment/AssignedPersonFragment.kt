@@ -26,6 +26,7 @@ class AssignedPersonFragment : Fragment() {
     private lateinit var user: UserModel
 
     private lateinit var viewModel: AssignedPersonViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,15 +38,12 @@ class AssignedPersonFragment : Fragment() {
             container,
             false)
 
-//        binding.buttonHome.setOnClickListener { view: View ->
-//            view.findNavController().navigate(R.id.action_assignedPersonFragment_to_homeFragment)
-//        }
-//
-//        binding.buttonCalendar.setOnClickListener { view: View ->
-//            view.findNavController().navigate(R.id.action_assignedPersonFragment_to_calendarFragment)
-//        }
+
 
         viewModel = ViewModelProviders.of(this).get(AssignedPersonViewModel::class.java)
+        binding.assignedPersonViewModel = viewModel
+
+        binding.lifecycleOwner = this
 
         binding.buttonCall.setOnClickListener{view:View ->
             callToPerson()
@@ -59,6 +57,7 @@ class AssignedPersonFragment : Fragment() {
     @SuppressLint("MissingPermission")
     fun callToPerson() {
         val intent = Intent(Intent.ACTION_DIAL)
+        Log.d("dupa", "phoneNumber: ${viewModel.phoneNumber}")
         intent.data = Uri.parse("tel:" + viewModel.phoneNumber)
         context!!.startActivity(intent)
     }

@@ -66,6 +66,54 @@ class FirestoreAPI {
                 }
         }
 
+        fun getAssignedUser(): UserModel{
+
+            val currentUser = getCurrentUser()
+            Log.d("DUPA", "Użytkownik: ${currentUser.email}")
+            return getUserByEmail(currentUser.assignedPersonEmail)
+        }
+
+        fun getUserByEmail(email: String): UserModel{
+            Log.d("DUPA", "0")
+            var user = UserModel()
+            Log.d("DUPA", "1")
+            var firestoreDB = FirebaseFirestore.getInstance()
+            Log.d("DUPA", "2")
+            firestoreDB.collection("users").document(email).get()
+                .addOnSuccessListener { document ->
+                    Log.d("DUPA", "3")
+                    if(document == null) {
+                        Log.d("DUPA", "Brak takiego użytkownika")
+                        Log.d("DUPA", "4a")
+                    }
+                    else{
+                        Log.d("DUPA", "4b")
+                        Log.d("DUPA", "Pobrano dane użytkownika")
+                        //Log.d("DUPA", "Email: ${document["email"]}")
+                        //Log.d("DUPA", "Name: ${document["firstName"]}")
+
+                        user = UserModel(
+                            email = document["email"].toString(),
+                            firstName = document["firstName"].toString(),
+                            phoneNumber = document["phoneNumber"].toString()
+                        )
+
+                        Log.d("DUPA", "5")
+                        //Log.d("DUPA", "Email: ${user.email}")
+                        //Log.d("DUPA", "Name: ${user.firstName}")
+                    }
+
+
+                }.addOnFailureListener {
+                    Log.d("DUPA", "Nieudane zapytanie")
+                    Log.d("DUPA", "6")
+                }
+            Log.d("DUPA", "7")
+            Log.d("DUPA", "Email: ${user.email}")
+            Log.d("DUPA", "Name: ${user.firstName}")
+            Log.d("DUPA", "8")
+            return user
+        }
 
     }
 }

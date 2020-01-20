@@ -12,5 +12,6 @@ data class UserModel(
     var selected: Boolean = false,
     var userName: String = "",
     var assignedPersonEmail: String = "",
+    var homeAddress: String = "",
     var role: String = AccountType.GUARD.toString()
 )
