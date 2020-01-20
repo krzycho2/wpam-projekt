@@ -31,13 +31,66 @@ class OccurenceViewModel : ViewModel() {
     var singleOccurence = MutableLiveData<Occurence>()
 
     init {
-        initOccurences()
-        try{
-            singleOccurence = MutableLiveData(allOccurences.value!![0])
+        //var _allOccurences = mutableListOf<Occurence>()
+        if (MyApplication.currentUser == null) {
+            var firestoreDB = FirebaseFirestore.getInstance()
+
+            val ref = firestoreDB.collection("users")
+                .document(FirebaseAuth.getInstance().currentUser!!.email!!)
+            ref.get().addOnSuccessListener {
+                val userInfo = it.toObject(UserModel::class.java)
+                MyApplication.currentUser = userInfo
+                MyApplication.currentUser!!.active = true
+                FirestoreUtil.updateUser(MyApplication.currentUser!!) {
+                }
+
+                occurenceRepository.getSavedOccurence()
+                    .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e)
+                            allOccurences.value = null
+
+                            return@EventListener
+                        }
+
+                        var savedOccurencesList: MutableList<Occurence> = mutableListOf()
+                        for (doc in value!!) {
+                            var addressItem = doc.toObject(Occurence::class.java)
+                            savedOccurencesList.add(addressItem)
+                        }
+                        allOccurences.value = savedOccurencesList
+
+                    })
+            }
+        } else {
+            occurenceRepository.getSavedOccurence()
+                .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e)
+                            allOccurences.value = null
+//                        _allOccurences = mutableListOf()
+                        return@EventListener
+                    }
+
+                    var savedOccurencesList: MutableList<Occurence> = mutableListOf()
+                    for (doc in value!!) {
+                        var addressItem = doc.toObject(Occurence::class.java)
+                        savedOccurencesList.add(addressItem)
+                    }
+//                    _allOccurences = savedOccurencesList
+                        allOccurences.value = savedOccurencesList
+//                    for(occurence in _allOccurences)
+//                        Log.d("dupa", "event: ${occurence.description}")
+                })
         }
-        catch(e: Exception) {
-            Log.d("dupa", "no trudno")
-        }
+        //initOccurences()
+        //try{
+//            singleOccurence = MutableLiveData(allOccurences.value!![0])
+//        }
+//        catch(e: Exception) {
+//            Log.d("dupa", "no trudno")
+//        }
+
 }
 
     private fun initOccurences(){
