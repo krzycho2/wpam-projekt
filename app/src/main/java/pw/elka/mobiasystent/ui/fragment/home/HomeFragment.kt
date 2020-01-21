@@ -18,6 +18,7 @@ import pw.elka.mobiasystent.R
 import pw.elka.mobiasystent.adapter.OccurenceAdapter
 import pw.elka.mobiasystent.databinding.FragmentHomeBinding
 import pw.elka.mobiasystent.model.Occurence
+import pw.elka.mobiasystent.model.UserModel
 import pw.elka.mobiasystent.viewmodels.OccurenceViewModel
 
 
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
 
         viewModel.allOccurences.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.data = it.sortedByDescending { it.time }.reversed()
         }}) // bind to repository
 
 
@@ -60,16 +61,41 @@ class HomeFragment : Fragment() {
             view.findNavController().navigate(R.id.action_homeFragment_to_occurenceAdd)
         }
 
-        val title = "Witaj " + viewModel.loggedUser.value
-        binding.textTitle.text = title
-
-        val subtitle = when(viewModel.userRole.value){
-            "PATIENT" -> "Oto Twoje wydarzenia"
-            else -> "Oto wydarzenia Twojego pacjenta"
-        }
+        viewModel.loggedUser.observe(this, Observer {
+            value -> SetTitles(value)
+        })
 
         return binding.root
     }
 
+    private fun SetTitles(value: UserModel?){
+        Log.d("dupa", "zmiana usera")
+        binding.textTitle.text = createTitle(value)
+        binding.textSubtitle.text = createSubTitle(value)
+    }
+    private fun createTitle(value: UserModel?): String{
+        var outString = String()
+        if(value == null)
+            outString = "Witaj!"
+
+        else
+            outString = "Witaj " + value!!.firstName
+
+        return outString
+    }
+
+    private fun createSubTitle(value: UserModel?): String{
+        var outString = String()
+        if(value == null)
+            outString = "Oto wydarzenia"
+
+        else{
+            if(value!!.role == "PATIENT")
+                outString =  "Oto Twoje wydarzenia."
+            else
+                outString =  "Oto wydarzenia Twojego pacjenta."
+        }
+        return outString
+    }
 
 }

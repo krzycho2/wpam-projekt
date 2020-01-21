@@ -30,6 +30,7 @@ class OccurenceAdapter: RecyclerView.Adapter<OccurenceViewHolder>(){
         val item = data[position]
         holder.date.text = createDateString(item.time)
 
+
         // icon
         val ocurType = item.type
         var imageID: Int
@@ -43,6 +44,11 @@ class OccurenceAdapter: RecyclerView.Adapter<OccurenceViewHolder>(){
 
         // description
         holder.description.text = item.description
+
+        // if past occurence -> fade layout
+        if(item.time < System.currentTimeMillis())
+            holder.linearLayout.alpha = 0.5F
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OccurenceViewHolder {

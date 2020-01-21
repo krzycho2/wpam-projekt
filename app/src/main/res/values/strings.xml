@@ -40,5 +40,6 @@
     <string name="title_assigned_person">Przydzielona osoba</string>
     <string name="text_subtitle_guard" >Oto wydarzenia Twojego pacjenta</string>
     <string name="text_subtitle_patient">Oto Twoje wydarzenia</string>
+    <string name="text_default_subtitle">Oto wydarzenia</string>
 
 </resources>

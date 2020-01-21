@@ -18,6 +18,8 @@ class FirestoreAPI {
             return MyApplication.currentUser!!
         }
 
+
+
         fun setAppUser()
         {
             var firestoreDB = FirebaseFirestore.getInstance()

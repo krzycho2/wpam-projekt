@@ -29,11 +29,12 @@ class OccurenceViewModel : ViewModel() {
 
     var allOccurences = MutableLiveData<List<Occurence>>()
 
+
     var singleOccurence = MutableLiveData<Occurence>()
 
-    var loggedUser = MutableLiveData<String>()
+    var loggedUser = MutableLiveData<UserModel?>()
 
-    var userRole = MutableLiveData<String>()
+    var userRole = MutableLiveData<String?>()
 
     init {
         //var _allOccurences = mutableListOf<Occurence>()
@@ -47,10 +48,9 @@ class OccurenceViewModel : ViewModel() {
                 MyApplication.currentUser = userInfo
                 MyApplication.currentUser!!.active = true
 
-                val user = MyApplication.currentUser!!
-                loggedUser = MutableLiveData(user.firstName)
-                userRole = MutableLiveData(user.role)
-                Log.d("dupa", "role: ${userRole.value}")
+                loggedUser.value = MyApplication.currentUser
+
+                Log.d("dupa", "user: ${loggedUser} role: ${userRole.value}")
 
                 FirestoreUtil.updateUser(MyApplication.currentUser!!) {
                 }
@@ -94,14 +94,10 @@ class OccurenceViewModel : ViewModel() {
 //                        Log.d("dupa", "event: ${occurence.description}")
                 })
         }
-        //initOccurences()
-        //try{
-//            singleOccurence = MutableLiveData(allOccurences.value!![0])
-//        }
-//        catch(e: Exception) {
-//            Log.d("dupa", "no trudno")
-//        }
 
+    fun setUser(){
+
+    }
 }
 
     private fun initOccurences(){
@@ -202,6 +198,10 @@ class OccurenceViewModel : ViewModel() {
             description = "Adam Kowalski: Pobranie leku"
         )
     )
+
+    private fun sortOccurencesByTime(occurences: List<Occurence>){
+
+    }
 
     var savedOcurrencesTest = MutableLiveData<List<Occurence>>(exampleOccurences)
 
