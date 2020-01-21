@@ -38,5 +38,7 @@
     <string name="key_email">Adres e-mail</string>
     <string name="button_call_text">Zadzwoń</string>
     <string name="title_assigned_person">Przydzielona osoba</string>
+    <string name="text_subtitle_guard" >Oto wydarzenia Twojego pacjenta</string>
+    <string name="text_subtitle_patient">Oto Twoje wydarzenia</string>
 
 </resources>

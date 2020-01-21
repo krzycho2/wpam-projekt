@@ -51,7 +51,7 @@ class FirestoreAPI {
             items["active"] = true
             items["assignedPersonEmail"] = user.assignedPersonEmail
             //
-             items["role"] = user.role;
+             items["role"] = user.role.toString();
             Log.d("DUPA", "user.email!!")
             Log.d("DUPA", user.toString()
             )

@@ -10,6 +10,7 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.*
+import pw.elka.mobiasystent.model.AccountType
 import pw.elka.mobiasystent.model.Occurence
 import pw.elka.mobiasystent.model.OccurenceType
 import pw.elka.mobiasystent.model.UserModel
@@ -30,6 +31,10 @@ class OccurenceViewModel : ViewModel() {
 
     var singleOccurence = MutableLiveData<Occurence>()
 
+    var loggedUser = MutableLiveData<String>()
+
+    var userRole = MutableLiveData<String>()
+
     init {
         //var _allOccurences = mutableListOf<Occurence>()
         if (MyApplication.currentUser == null) {
@@ -41,6 +46,12 @@ class OccurenceViewModel : ViewModel() {
                 val userInfo = it.toObject(UserModel::class.java)
                 MyApplication.currentUser = userInfo
                 MyApplication.currentUser!!.active = true
+
+                val user = MyApplication.currentUser!!
+                loggedUser = MutableLiveData(user.firstName)
+                userRole = MutableLiveData(user.role)
+                Log.d("dupa", "role: ${userRole.value}")
+
                 FirestoreUtil.updateUser(MyApplication.currentUser!!) {
                 }
 

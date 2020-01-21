@@ -49,33 +49,24 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-//        viewModel.savedOccurences.observe(this, Observer{textOfOccurence -> binding.TextOccurence.text = textOfOccurence})
-        //viewModel.singleOccurence.observe(this, Observer{occurence -> binding.TextOccurence.text = occurence})
-
         viewModel.allOccurences.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.data = it
         }}) // bind to repository
 
-        //viewModel.savedOcurrencesTest.observe(viewLifecycleOwner, Observer {
-           // it?.let {
-              //  adapter.data = it
-          //  }
-        //})
+
 
         binding.addOccurence.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_homeFragment_to_occurenceAdd)
         }
 
+        val title = "Witaj " + viewModel.loggedUser.value
+        binding.textTitle.text = title
 
-//        binding.buttonAssignedPerson.setOnClickListener { view: View ->
-//            view.findNavController().navigate(R.id.action_homeFragment_to_assignedPersonFragment)
-//        }
-//
-//        binding.buttonCalendar.setOnClickListener { view: View ->
-//            view.findNavController().navigate(R.id.action_homeFragment_to_calendarFragment)
-//        }
-
+        val subtitle = when(viewModel.userRole.value){
+            "PATIENT" -> "Oto Twoje wydarzenia"
+            else -> "Oto wydarzenia Twojego pacjenta"
+        }
 
         return binding.root
     }
