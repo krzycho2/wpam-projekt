@@ -7,28 +7,38 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="44dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="@dimen/margin_std"
-        app:srcCompat="@drawable/caution" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="78dp"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/margin_std"
-        android:text="11/02/2012 10:00"
-        android:textAlignment="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="272dp"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/margin_std"
-        android:text="Wizyta u dr Szymańskiego"
-        android:textAlignment="center"
-        android:textColorLink="#00AD6565" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="44dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="4pt"
+                app:srcCompat="@drawable/caution" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="78dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4pt"
+                android:text="11/02/2012 10:00"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="272dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="4pt"
+                android:text="Wizyta u dr Szymańskiego"
+                android:textAlignment="center"
+                android:textColorLink="#00AD6565" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

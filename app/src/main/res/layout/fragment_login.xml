@@ -148,6 +148,7 @@
             android:paddingTop="10dp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
+            android:visibility="invisible"
             app:com_facebook_login_text="@string/facebookLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
