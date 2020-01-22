@@ -52,8 +52,8 @@ class HomeFragment : Fragment() {
 
         viewModel.allOccurences.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it.sortedByDescending { it.time }.reversed()
-        }}) // bind to repository
+                adapter.data = it.sortedByDescending { it.time }
+            }}) // bind to repository
 
 
 
