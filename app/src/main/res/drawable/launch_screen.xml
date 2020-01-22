@@ -6,7 +6,7 @@
 
         <bitmap
             android:gravity="center"
-            android:src="@drawable/instamobile_logo" />
+            android:src="@drawable/ic_launcher-web" />
 
     </item>
 </layer-list>
