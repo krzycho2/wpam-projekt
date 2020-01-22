@@ -57,8 +57,8 @@ class AssignedPersonFragment : Fragment() {
     @SuppressLint("MissingPermission")
     fun callToPerson() {
         val intent = Intent(Intent.ACTION_DIAL)
-        Log.d("dupa", "phoneNumber: ${viewModel.phoneNumber}")
-        intent.data = Uri.parse("tel:" + viewModel.phoneNumber)
+        Log.d("dupa", "phoneNumber: ${viewModel.assignedUser.phoneNumber}")
+        intent.data = Uri.parse("tel:" + viewModel.assignedUser.phoneNumber)
         context!!.startActivity(intent)
     }
 
